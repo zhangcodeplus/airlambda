@@ -1,0 +1,203 @@
+baseURL = "https://yourusername.github.io/"
+languageCode = "zh-cn"
+title = "空投信息网"
+theme = "PaperMod"
+
+# 多语言配置
+defaultContentLanguage = "zh"
+defaultContentLanguageInSubdir = false
+
+[languages]
+  [languages.zh]
+    languageName = "中文"
+    weight = 1
+    contentDir = "content/zh"
+    [languages.zh.params]
+      description = "空投信息分享平台"
+      keywords = ["空投", "挖矿", "加密货币", "区块链"]
+      author = "zhangcodeplus"
+      defaultTheme = "auto"
+      ShowReadingTime = true
+      ShowShareButtons = true
+      ShowPostNavLinks = true
+      ShowBreadCrumbs = true
+      ShowCodeCopyButtons = true
+      ShowRssButtonInSectionTermList = true
+      ShowWordCount = true
+      ShowFullTextinRSS = true
+      ShowToc = true
+      TocOpen = false
+
+  [languages.en]
+    languageName = "English"
+    weight = 2
+    contentDir = "content/en"
+    [languages.en.params]
+      description = "Airdrop Information Sharing Platform"
+      keywords = ["Airdrop", "Mining", "Cryptocurrency", "Blockchain"]
+      author = "zhangcodeplus"
+      defaultTheme = "auto"
+      ShowReadingTime = true
+      ShowShareButtons = true
+      ShowPostNavLinks = true
+      ShowBreadCrumbs = true
+      ShowCodeCopyButtons = true
+      ShowRssButtonInSectionTermList = true
+      ShowWordCount = true
+      ShowFullTextinRSS = true
+      ShowToc = true
+      TocOpen = false
+
+# 性能优化配置
+[build]
+  writeStats = true
+  noJSConfigInAssets = true
+
+[params]
+  # 网站描述
+  description = "空投信息分享平台"
+  
+  # 作者信息
+  [params.author]
+    name = "zhangcodeplus"
+    email = "zhangcodeplusl@gmail.com"
+    link = "https://github.com/zhangcodeplus"
+  
+  # 网站图标
+  favicon = "favicon.ico"
+
+  # 性能优化
+  [params.features]
+    [params.features.lazyLoad]
+      enable = true
+    [params.features.imageProcessing]
+      enable = true
+    [params.features.minify]
+      enable = true
+
+  # 缓存设置
+  [params.cache]
+    enable = true
+    maxAge = 3600
+
+[menu]
+  [[menu.main]]
+    identifier = "mining"
+    name = "挖矿"
+    url = "/mining/"
+    weight = 1
+    [[menu.main]]
+      identifier = "mining-mobile"
+      name = "手机挖矿"
+      url = "/mobile/"
+      parent = "mining"
+      weight = 1
+    [[menu.main]]
+      identifier = "mining-machine"
+      name = "矿机"
+      url = "/machine/"
+      parent = "mining"
+      weight = 2
+    [[menu.main]]
+      identifier = "mining-home"
+      name = "家庭挖矿赚钱品种"
+      url = "/home-mining/"
+      parent = "mining"
+      weight = 3
+    [[menu.main]]
+      identifier = "mining-proxy"
+      name = "加密代理"
+      url = "/proxy/"
+      parent = "mining"
+      weight = 4
+
+  [[menu.main]]
+    identifier = "airdrop"
+    name = "空投推荐"
+    url = "/airdrop/"
+    weight = 2
+    [[menu.main]]
+      identifier = "airdrop-auto"
+      name = "挂机空投"
+      url = "/auto-airdrop/"
+      parent = "airdrop"
+      weight = 1
+    [[menu.main]]
+      identifier = "airdrop-interactive"
+      name = "交互空投"
+      url = "/interactive-airdrop/"
+      parent = "airdrop"
+      weight = 2
+    [[menu.main]]
+      identifier = "airdrop-game"
+      name = "游戏空投"
+      url = "/game-airdrop/"
+      parent = "airdrop"
+      weight = 3
+
+  [[menu.main]]
+    identifier = "tutorial"
+    name = "空投教程"
+    url = "/tutorial/"
+    weight = 3
+    [[menu.main]]
+      identifier = "tutorial-basic"
+      name = "基础装备"
+      url = "/basic-tutorial/"
+      parent = "tutorial"
+      weight = 1
+    [[menu.main]]
+      identifier = "tutorial-advanced"
+      name = "进阶教程"
+      url = "/advanced-tutorial/"
+      parent = "tutorial"
+      weight = 2
+
+  [[menu.main]]
+    identifier = "exchange"
+    name = "交易所推荐"
+    url = "/exchange/"
+    weight = 4
+    [[menu.main]]
+      identifier = "exchange-cex"
+      name = "CEX推荐"
+      url = "/cex/"
+      parent = "exchange"
+      weight = 1
+    [[menu.main]]
+      identifier = "exchange-dex"
+      name = "DEX推荐"
+      url = "/dex/"
+      parent = "exchange"
+      weight = 2
+    [[menu.main]]
+      identifier = "exchange-staking"
+      name = "质押"
+      url = "/staking/"
+      parent = "exchange"
+      weight = 3
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+
+# 输出配置
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+  term = ["HTML", "RSS"]
+  page = ["HTML"]
+
+# 压缩配置
+[minify]
+  [minify.html]
+    keepComments = false
+    keepWhitespace = false
+  [minify.css]
+    keepComments = false
+    keepWhitespace = false
+  [minify.js]
+    keepComments = false
+    keepWhitespace = false 
