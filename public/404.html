@@ -67,8 +67,24 @@
     <title>404 Page not found - AirFaucet</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <style>
+    .nav-links { display: flex; gap: 30px; list-style: none; }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a { color: #23242a; text-decoration: none; font-weight: 600; padding: 10px 18px; display: block; }
+    .nav-links > li:hover > a { color: #8bc34a; }
+    .dropdown { display: none; position: absolute; left: 0; top: 100%; background: #fff; min-width: 160px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-radius: 0 0 8px 8px; z-index: 100; }
+    .dropdown li { width: 100%; }
+    .dropdown a { color: #23242a; padding: 10px 18px; font-weight: 400; border-radius: 0; }
+    .dropdown a:hover { background: #f5f5f5; color: #8bc34a; }
+    .nav-links > li:hover .dropdown { display: block; }
+    @media (max-width: 900px) {
+      .nav-links { flex-direction: column; gap: 0; }
+      .nav-links > li { width: 100%; }
+      .dropdown { position: static; box-shadow: none; border-radius: 0; }
+    }
+    </style>
 </head>
 <body>
     <header>
@@ -76,10 +92,38 @@
             <div class="nav-container">
                 <a href="/" class="logo">AirFaucet</a>
                 <ul class="nav-links">
-                    <li><a href="/mobile">手机挖矿</a></li>
-                    <li><a href="/tutorial">挖矿教程</a></li>
-                    <li><a href="/wallet">钱包管理</a></li>
-                    <li><a href="/about">关于我们</a></li>
+                    <li>
+                      <a href="#">挖矿</a>
+                      <ul class="dropdown">
+                        <li><a href="/mobile">手机挖矿</a></li>
+                        <li><a href="/machine">矿机</a></li>
+                        <li><a href="/home-mining">家庭挖矿</a></li>
+                        <li><a href="/proxy">加密代理</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#">空投推荐</a>
+                      <ul class="dropdown">
+                        <li><a href="/auto-airdrop">挂机空投</a></li>
+                        <li><a href="/interactive-airdrop">交互空投</a></li>
+                        <li><a href="/game-airdrop">游戏空投</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#">空投教程</a>
+                      <ul class="dropdown">
+                        <li><a href="/basic-tutorial">基础装备</a></li>
+                        <li><a href="/advanced-tutorial">进阶教程</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#">交易所推荐</a>
+                      <ul class="dropdown">
+                        <li><a href="/cex">CEX推荐</a></li>
+                        <li><a href="/dex">DEX推荐</a></li>
+                        <li><a href="/staking">质押</a></li>
+                      </ul>
+                    </li>
                 </ul>
             </div>
         </nav>

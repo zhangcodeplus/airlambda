@@ -1,168 +1,92 @@
 {{ define "main" }}
-<!-- Swiper 文章滑动区块 -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-
-<div class="swiper-container article-swiper">
-  <div class="swiper-wrapper">
-    {{ range first 10 (where .Site.RegularPages "Type" "posts") }}
-    <div class="swiper-slide">
-      <div class="slide-card">
-        {{ if .Params.thumbnail }}
-        <img class="slide-thumb" src="{{ .Params.thumbnail }}" alt="{{ .Title }}">
-        {{ end }}
-        <div class="slide-content">
-          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-          <p>{{ .Summary }}</p>
-          <span class="slide-date">{{ .Date.Format "2006-01-02" }}</span>
-        </div>
+<div class="home-top-3col">
+  <div class="home-col">
+    <h2>最新空投</h2>
+    {{ range first 5 (where .Site.RegularPages "Params.categories" "空投推荐") }}
+      <div class="home-item">
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <span class="date">{{ .Date.Format "2006-01-02" }}</span>
+        <p>{{ .Summary }}</p>
       </div>
+    {{ end }}
+  </div>
+  <div class="home-col">
+    <h2>最新挖矿</h2>
+    {{ range first 5 (where .Site.RegularPages "Params.categories" "挖矿") }}
+      <div class="home-item">
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <span class="date">{{ .Date.Format "2006-01-02" }}</span>
+        <p>{{ .Summary }}</p>
+      </div>
+    {{ end }}
+  </div>
+  <div class="home-col">
+    <h2>强推项目</h2>
+    {{ range first 5 (where .Site.RegularPages "Params.categories" "强推项目") }}
+      <div class="home-item">
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <span class="date">{{ .Date.Format "2006-01-02" }}</span>
+        <p>{{ .Summary }}</p>
+      </div>
+    {{ end }}
+  </div>
+</div>
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    {{ range first 10 .Site.RegularPages }}
+    <div class="swiper-slide">
+      <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      <p>{{ .Summary }}</p>
     </div>
     {{ end }}
   </div>
   <div class="swiper-pagination"></div>
-  <div class="swiper-button-prev"></div>
   <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
 </div>
-
+<style>
+.home-top-3col {
+  display: flex;
+  gap: 32px;
+  margin: 40px auto 40px auto;
+  max-width: 1200px;
+  justify-content: center;
+}
+.home-col {
+  flex: 1;
+  background: #23242a;
+  border-radius: 12px;
+  padding: 24px 18px;
+  color: #fff;
+  min-width: 0;
+}
+.home-col h2 {
+  font-size: 1.3em;
+  color: #8bc34a;
+  margin-bottom: 18px;
+  text-align: center;
+}
+.home-item { margin-bottom: 18px; }
+.home-item a { color: #fff; font-weight: bold; text-decoration: none; }
+.home-item a:hover { color: #8bc34a; }
+.date { font-size: 0.95em; color: #8bc34a; margin-left: 8px; }
+@media (max-width: 900px) {
+  .home-top-3col { flex-direction: column; gap: 18px; }
+}
+.swiper-container { width: 100%; height: 300px; margin-bottom: 40px; }
+.swiper-slide { background: #23242a; color: #fff; padding: 20px; border-radius: 8px; }
+.swiper-slide h2 { font-size: 1.5em; margin-bottom: 10px; }
+.swiper-slide a { color: #fff; text-decoration: none; }
+.swiper-slide a:hover { color: #8bc34a; }
+</style>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  new Swiper('.article-swiper', {
-    slidesPerView: 3,
-    spaceBetween: 30,
+  new Swiper('.swiper-container', {
     loop: true,
     pagination: { el: '.swiper-pagination', clickable: true },
     navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-    breakpoints: {
-      1024: { slidesPerView: 3 },
-      768: { slidesPerView: 2 },
-      0: { slidesPerView: 1 }
-    }
+    autoplay: { delay: 3000 }
   });
-});
 </script>
-
-<!-- 分类区块 -->
-<div class="categories-section">
-  <div class="category-card">
-    <h3>挖矿</h3>
-    <ul>
-      <li><a href="/mobile">手机挖矿</a></li>
-      <li><a href="/machine">矿机</a></li>
-      <li><a href="/home-mining">家庭挖矿赚钱品种</a></li>
-      <li><a href="/proxy">加密代理</a></li>
-    </ul>
-  </div>
-  <div class="category-card">
-    <h3>空投推荐</h3>
-    <ul>
-      <li><a href="/auto-airdrop">挂机空投</a></li>
-      <li><a href="/interactive-airdrop">交互空投</a></li>
-      <li><a href="/game-airdrop">游戏空投</a></li>
-    </ul>
-  </div>
-  <div class="category-card">
-    <h3>空投教程</h3>
-    <ul>
-      <li><a href="/basic-tutorial">基础装备</a></li>
-      <li><a href="/advanced-tutorial">进阶教程</a></li>
-    </ul>
-  </div>
-  <div class="category-card">
-    <h3>交易所推荐</h3>
-    <ul>
-      <li><a href="/cex">cex推荐</a></li>
-      <li><a href="/dex">dex推荐</a></li>
-      <li><a href="/staking">质押</a></li>
-    </ul>
-  </div>
-</div>
-
-<style>
-.article-swiper {
-  margin: 40px auto 60px auto;
-  max-width: 1200px;
-  border-radius: 15px;
-  background: #23242a;
-  padding: 30px 0 50px 0;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
-}
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.slide-card {
-  background: #18191f;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-  padding: 20px;
-  width: 340px;
-  min-height: 260px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  color: #fff;
-}
-.slide-thumb {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 15px;
-}
-.slide-content h3 {
-  font-size: 1.2em;
-  margin-bottom: 10px;
-}
-.slide-content p {
-  font-size: 1em;
-  color: #bdbdbd;
-  margin-bottom: 10px;
-}
-.slide-date {
-  font-size: 0.9em;
-  color: #8bc34a;
-}
-.categories-section {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 32px;
-  max-width: 1200px;
-  margin: 40px auto 60px auto;
-}
-.category-card {
-  background: #23242a;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-  padding: 32px 24px;
-  color: #fff;
-}
-.category-card h3 {
-  font-size: 1.3em;
-  margin-bottom: 18px;
-  color: #8bc34a;
-}
-.category-card ul {
-  list-style: none;
-  padding: 0;
-}
-.category-card li {
-  margin-bottom: 12px;
-}
-.category-card a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 1.08em;
-  transition: color 0.2s;
-}
-.category-card a:hover {
-  color: #8bc34a;
-}
-@media (max-width: 900px) {
-  .article-swiper { padding: 10px 0 30px 0; }
-  .slide-card { width: 90vw; min-width: 0; }
-  .categories-section { grid-template-columns: 1fr; }
-}
-</style>
 {{ end }} 
